@@ -13,6 +13,8 @@ Metric monitoring for a BPM engine can be a resource intensive task depending on
 
 This plugin is designed to be used in Camunda run as a drop-in plugin, or as a custom dependency added to your Camunda Spring Boot project.
 
+![arch](./docs/Camunda-Monitoring-Arch.png)
+
 # Camunda-Run Quick Start with Prometheus
 
 1. Download the Process Engine Plugin Jar from [Releases](https://github.com/StephenOTT/Camunda-Monitoring/releases) (Use the release that includes the Prometheus dependency)
