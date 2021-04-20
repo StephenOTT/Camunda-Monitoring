@@ -3,6 +3,9 @@
 "Camunda Monitoring" is a process engine plugin that provides the Camunda BPM engine with configurable and script based metric data.
 The data can be consumed by numerous monitoring systems such as Prometheus.
 
+This project is a replacement for: https://github.com/StephenOTT/camunda-prometheus-process-engine-plugin
+
+
 The project leverages Spring Boot Actuator (which leverages [Micrometer](https://micrometer.io/docs)) to 
 provide a [generic metrics facade that supports numerous monitoring systems](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics)
 
