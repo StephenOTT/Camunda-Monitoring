@@ -40,7 +40,7 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    implementation(project(":prometheusmetricsplugin"))
+    implementation(project(":monitoringplugin"))
 
     //https://github.com/spring-projects/spring-boot/issues/11028
     //https://github.com/pambrose/kotlin-script-problem
@@ -49,7 +49,7 @@ dependencies {
 
 application {
     // notice the Kt at the end!!
-    mainClassName = "com.github.stephenott.camunda.springboot.prometheus.ApplicationKt"
+    mainClassName = "com.github.stephenott.camunda.springboot.monitoring.ApplicationKt"
 }
 
 tasks {

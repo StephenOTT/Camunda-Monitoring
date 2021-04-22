@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/lang https://www.springframework.org/schema/lang/spring-lang.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    https://docs.spring.io/spring-framework/docs/current/reference/html/languages.html#groovy-->
+
+    <lang:defaults proxy-target-class="true"/>
+
+
+    <!--    <lang:groovy id="camundaMonitoringMetrics" script-source="/metrics/CamundaMonitoringMetrics.groovy"/>-->
+
+    <lang:groovy id="camundaMonitoringMetrics" script-source="file:/metrics/CamundaMonitoringMetrics.groovy"/>
+
+
+    <!--    <lang:groovy id="processInstanceMetrics" script-source="/metrics/ProcessInstanceMetrics.groovy"/>-->
+    <!--    <lang:groovy id="incidentMetrics" script-source="/metrics/IncidentMetrics.groovy"/>-->
+
+</beans>

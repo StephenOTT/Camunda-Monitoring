@@ -1,4 +1,4 @@
-package org.camunda.bpm.run.plugin.prometheus
+package org.camunda.bpm.run.plugin.monitoring
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.ImportResource

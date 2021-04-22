@@ -1,0 +1,10 @@
+services:
+  camunda-monitoring:
+    image: camunda/camunda-bpm-platform:run-latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./Camunda-Monitoring.jar:/camunda/configuration/userlib/Camunda-Monitoring.jar
+      - ./metrics:/metrics
+      - ./camunda-monitoring-beans.xml:/camunda/configuration/camunda-monitoring-beans.xml
+      - ./default.yml:/camunda/configuration/default.yml
