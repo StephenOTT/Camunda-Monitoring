@@ -1,6 +1,6 @@
-package com.github.stephenott.camunda.springboot.monitoring
+package com.github.stephenott.camunda.springboot.prometheus
 
-import org.camunda.bpm.run.plugin.monitoring.CamundaMonitoringProcessEnginePlugin
+import org.camunda.bpm.run.plugin.prometheus.CamundaMonitoringProcessEnginePlugin
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

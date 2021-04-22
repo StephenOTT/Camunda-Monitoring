@@ -1,8 +1,6 @@
 # Camunda Monitoring
 
-"Camunda Monitoring" is a process engine plugin that provides the Camunda BPM engine with configurable and script 
-based metric data.
-
+"Camunda Monitoring" is a process engine plugin that provides the Camunda BPM engine with configurable and script based metric data.
 The data can be consumed by numerous monitoring systems such as Prometheus.
 
 This project is a replacement for: https://github.com/StephenOTT/camunda-prometheus-process-engine-plugin
@@ -14,59 +12,57 @@ provide a [generic metrics facade that supports numerous monitoring systems](htt
 Due to popularity of Prometheus, this documentation makes the assumption that Prometheus will be used as the monitoring 
 system, but you should be able to replace the dependency of Prometheus with any other Micrometer supported system/dependency.
 
-Metric monitoring for a BPM engine can be a resource intensive task depending on the size of your database, 
-and your queries/metrics you want to monitor.
+Metric monitoring for a BPM engine can be a resource intensive task depending on the size of your database, and your queries/metrics you want to monitor.
 
-This plugin is designed to be used in Camunda run as a drop-in plugin, or as a custom dependency added to your 
-Camunda Spring Boot project.
+This plugin is designed to be used in Camunda run as a drop-in plugin, or as a custom dependency added to your Camunda Spring Boot project.
 
 ![arch](./docs/Camunda-Monitoring-Arch.png)
 
 # Camunda-Run Quick Start with Prometheus
 
-1. Download the Camunda-Monitoring Jar from [Releases](https://github.com/StephenOTT/Camunda-Monitoring/releases) and copy it into the docker folder.
-1. Configure your DB connections in the default.yml file.   
-1. Run the Docker-compose file.  See the docker folder.
+1. Download the Process Engine Plugin Jar from [Releases](https://github.com/StephenOTT/Camunda-Monitoring/releases) (Use the release that includes the Prometheus dependency)
+1. Run the Docker-compose file.  See the docker folder
 
-The docker-compose will deploy a Camunda-Run instance with the Camunda job-executor disabled.  
-The engine instance should be used solely for monitoring purposes.
+The docker-compose will deploy a Camunda-Run instance with the Camunda job-executor disabled.  The engine instance should be used solely for monitoring purposes.
 
 Defaults:
 
-1. All Spring Boot Actuator metrics that are enabled by default have been disabled and only Camunda metrics should remain.
+1. all Spring Boot Actuator metrics that are enabled by default have been disabled and only Camunda metrics should remain.
 1. A volume will be mounted for `/metrics/CamundaMonitoringMetrics.groovy`, where you add/remove/modify any metrics you choose.  
-1. The Prometheus metrics are exposed at:`http://localhost:8080/actuator/prometheus`
+1. prometheus metrics should be exposed as:`http://localhost:8080/actuator/prometheus`
 
 
-After making changes to the CamundaMonitoringMetrics.groovy file, you must restart the Camunda instance with the 
-Camunda Monitoring Plugin for changes to take effect.
+After making changes to the CamundaMonitoringMetrics.groovy file, you must restart the Camunda instance with the Camunda Monitoring Plugin for changes to take effect.
 
 # Prometheus Setup and Grafana Reporting
 
-Deploy any typical Prometheus/Grafana setup with Prometheus configuration as per [Spring Boot Actuator Docs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-export-prometheus)
+[See Prometheus configuration requirements from Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-export-prometheus)
+
+.... more to come...
 
 # Default Metrics 
 
 Part of `CamundaMonitoringMetrics.groovy`
 
 1. Active Incidents Count
-1. [Open a request](https://github.com/StephenOTT/Camunda-Monitoring/issues/new) if you want a specific metric created
+1. Active Process Instances Count
+1. Completed Process Instances Count
 
 
 # Advanced Configuration
 
-## Monitoring Beans Configuration
+## Metric Beans Configuration
 
-Monitoring beans are made available to the engine through a "beans configuration" file:
+Metric beans are made available to the engine through a "beans configuration" file:
 
-Spring Config Yml Path: `camunda.bpm.metrics.monitoringBeansXml`.  
-Default: `file:/camunda/configuration/camunda-monitoring-beans.xml` which is for optimal Camunda Run usage.
+Application Yml Path: `camunda.bpm.metrics.monitoringBeansXml`.  
+Default: `/file:/camunda/configuration/camunda-monitoring-beans.xml` which is for optimal Camunda Run usage.
 
 Takes a classpath resource or a file:
 
 Example:
 
-`camunda.bpm.metrics.monitoringBeansXml: file:/camunda/configuration/camunda-monitoring-beans.xml`
+`camunda.bpm.metrics.monitoringBeansXml: /file:/camunda/configuration/camunda-monitoring-beans.xml`
 
 or
 
@@ -86,35 +82,22 @@ camunda-metric-beans.xml:
 
     <lang:defaults proxy-target-class="true"/>
 
-
-    <!--    <lang:groovy id="camundaMonitoringMetrics" script-source="/metrics/CamundaMonitoringMetrics.groovy"/>-->
-
-    <lang:groovy id="camundaMonitoringMetrics" script-source="file:/metrics/CamundaMonitoringMetrics.groovy"/>
-
-
-    <!--    <lang:groovy id="processInstanceMetrics" script-source="/metrics/ProcessInstanceMetrics.groovy"/>-->
-    <!--    <lang:groovy id="incidentMetrics" script-source="/metrics/IncidentMetrics.groovy"/>-->
+    <lang:groovy id="processInstanceMetrics" script-source="/metrics/ProcessInstanceMetrics.groovy"/>
+    <lang:groovy id="incidentMetrics" script-source="/metrics/IncidentMetrics.groovy"/>
 
 </beans>
 ```
 
-`script-source` will look in the classpath by default.  If your groovy files are external to the jar, then you can use the `file:` prefix to set the path in the filesystem such as:
+`script-source` will look in the classpath by default.  If your groovy files are outside of your jar, then you can use the `file:` prefix to set the path in the filesystem such as:
 
-`<lang:groovy id="incidentMetrics" script-source="file:/someFolder/IncidentMetrics.groovy"/>`
+`<lang:groovy id="incidentMetrics" script-source="file:/someFolder/IncidentMetrics.groovy" proxy-target-class="true"/>`
 
 
-## Spring Boot configuration:
+## Application.yml configuration:
 
-Add the following to your Spring Boot Config (such as `application.yml`) .
+Add the following to your `application.yml`.
 
 ```yml
-# Configure your DB connection:
-#spring:
-#  datasource:
-#    url: jdbc:h2:./build/DB/dbdevDb1;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=TRUE # jdbc:h2:~/devDb1;MODE=PostgreSQL;AUTO_SERVER=TRUE
-#    username: sa
-#    password: ''
-
 management:
   endpoints:
     web:
@@ -130,14 +113,6 @@ management:
       system: false
       jdbc: false
       http: false
-
-camunda:
-  bpm:
-    # If you have a custom monitoring-beans path location you can define it:
-    #    metrics:
-    #      monitoringBeansXml: file:/camunda/configuration/camunda-monitoring-beans.xml
-    job-execution:
-      enabled: false
  ```
 
 If you want to benefit from the other metrics provided by Spring Boot Actuator then you can enable them under `management.metrics.enable:...`.
@@ -145,7 +120,7 @@ If you want to benefit from the other metrics provided by Spring Boot Actuator t
 See the [Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-export-prometheus) documentation for further details
 
 
-# Example Monitoring Metrics File
+# Example Metric File
 
 ```groovy
 

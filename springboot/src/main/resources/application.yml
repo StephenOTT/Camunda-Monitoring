@@ -30,7 +30,6 @@ camunda:
     history-level: full
     job-execution:
       deployment-aware: false
-      enabled: false
     eventing:
       execution: true
       history: true
@@ -38,3 +37,9 @@ camunda:
   #spring:
 #  jersey:
 #    application-path: /rest
+
+scrape_configs:
+  - job_name: 'spring'
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ['HOST:PORT']

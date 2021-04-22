@@ -1,4 +1,4 @@
-package org.camunda.bpm.run.plugin.monitoring
+package org.camunda.bpm.run.plugin.prometheus
 
 import org.camunda.bpm.engine.impl.cfg.AbstractProcessEnginePlugin
 import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl

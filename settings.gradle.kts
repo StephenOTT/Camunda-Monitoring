@@ -1,2 +1,2 @@
-rootProject.name = "CamundaMonitoring"
-include("monitoringplugin", "springboot")
+rootProject.name = "CamundaPrometheusMetricsPlugin"
+include("prometheusmetricsplugin", "springboot")
