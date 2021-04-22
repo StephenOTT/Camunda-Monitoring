@@ -41,6 +41,8 @@ Defaults:
 After making changes to the CamundaMonitoringMetrics.groovy file, you must restart the Camunda instance with the 
 Camunda Monitoring Plugin for changes to take effect.
 
+For more configuration options on Camunda Run (such as disable Swagger UI, Web Apps, etc) see the [Camunda Docker Repo](https://github.com/camunda/docker-camunda-bpm-platform)
+
 # Prometheus Setup and Grafana Reporting
 
 Deploy any typical Prometheus/Grafana setup with Prometheus configuration as per [Spring Boot Actuator Docs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-export-prometheus)
