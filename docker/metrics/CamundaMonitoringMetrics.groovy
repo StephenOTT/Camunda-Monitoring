@@ -27,7 +27,7 @@ class CamundaMonitoringMetrics {
     String activeIncidentsMetricName = "${namespace}_active_incidents"
     AtomicLong activeIncidents
 
-    String activeUserTasksMetricName = "${namespace}_active_usertasks"
+    String activeUserTasksMetricName = "${namespace}_active_user_tasks"
     AtomicLong activeUserTasks
 
     String activeMessageEventSubscriptionsMetricName = "${namespace}_active_message_event_subscriptions"
@@ -131,7 +131,7 @@ class CamundaMonitoringMetrics {
 
     @Scheduled(fixedRate = 60000L)
     void getActiveUserTasks(){
-        activeIncidents.set(processEngine.getTaskService().createTaskQuery().active().count())
+        activeUserTasks.set(processEngine.getTaskService().createTaskQuery().active().count())
     }
 
     @Scheduled(fixedRate = 60000L)
