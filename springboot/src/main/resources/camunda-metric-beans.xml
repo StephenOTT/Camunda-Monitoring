@@ -9,9 +9,9 @@
     <lang:defaults proxy-target-class="true"/>
 
 
-<!--    <lang:groovy id="camundaMonitoringMetrics" script-source="/metrics/CamundaMonitoringMetrics.groovy"/>-->
+    <lang:groovy id="camundaMonitoringMetrics" script-source="/metrics/CamundaMonitoringMetrics.groovy"/>
 
-    <lang:groovy id="camundaMonitoringMetrics" script-source="file:/metrics/CamundaMonitoringMetrics.groovy"/>
+<!--    <lang:groovy id="camundaMonitoringMetrics" script-source="file:/metrics/CamundaMonitoringMetrics.groovy"/>-->
 
 
 <!--    <lang:groovy id="processInstanceMetrics" script-source="/metrics/ProcessInstanceMetrics.groovy"/>-->

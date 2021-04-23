@@ -3,6 +3,11 @@ spring:
     url: jdbc:h2:./build/DB/dbdevDb1;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=TRUE # jdbc:h2:~/devDb1;MODE=PostgreSQL;AUTO_SERVER=TRUE
     username: sa
     password: ''
+  task:
+    scheduling:
+      pool:
+        size: 3
+
 
 management:
   endpoints:

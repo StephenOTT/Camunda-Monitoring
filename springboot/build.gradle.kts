@@ -9,11 +9,13 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.allopen")
     id("org.jetbrains.kotlin.plugin.spring")
+//    id("org.springframework.boot") version "2.4.5"
+//    id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
 
 dependencies {
-    implementation(platform("org.springframework.boot:spring-boot-dependencies:2.2.5.RELEASE"))
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:2.4.5"))
     implementation(platform("org.camunda.bpm:camunda-bom:$camundaVersion"))
 
     implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter")
@@ -42,9 +44,6 @@ dependencies {
 
     implementation(project(":monitoringplugin"))
 
-    //https://github.com/spring-projects/spring-boot/issues/11028
-    //https://github.com/pambrose/kotlin-script-problem
-
 }
 
 application {
@@ -57,8 +56,6 @@ tasks {
         useJUnitPlatform()
     }
 }
-// https://youtrack.jetbrains.com/issue/KT-40937
-
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
