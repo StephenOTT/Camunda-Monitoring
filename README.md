@@ -36,6 +36,7 @@ Defaults:
 1. All Spring Boot Actuator metrics that are enabled by default have been disabled and only Camunda metrics should remain.
 1. A volume will be mounted for `/metrics/CamundaMonitoringMetrics.groovy`, where you add/remove/modify any metrics you choose.  
 1. The Prometheus metrics are exposed at:`http://localhost:8080/actuator/prometheus`
+1. Thread Pool (number of parallel threads) for the execution of the scheduled metrics is `3`.  See the `default.yml` for further config options: `spring.task.scheduling.pool.size: 3`
 
 
 After making changes to the CamundaMonitoringMetrics.groovy file, you must restart the Camunda instance with the 
@@ -51,7 +52,25 @@ Deploy any typical Prometheus/Grafana setup with Prometheus configuration as per
 
 Part of `CamundaMonitoringMetrics.groovy`
 
-1. Active Incidents Count
+1. Active Incidents Count (fixedRate = 60s)
+1. Active User Tasks Count (fixedRate = 60s)
+1. Active Message Event Subscription Count (fixedRate = 60s)
+1. Active Signal Event Subscription Count (fixedRate = 60s)
+1. Active Compensate Event Subscription Count (fixedRate = 60s)
+1. Active Conditional Event Subscription Count (fixedRate = 60s)
+1. Executable Jobs Count (fixedRate = 60s)
+1. Executable Timer Jobs Count (fixedRate = 60s)
+1. Timer Job Count (fixedRate = 60s)
+1. Message Job Count (fixedRate = 60s)
+1. User Count (fixedRate = 1h)
+1. Tenant Count (fixedRate = 1h)
+1. Active Process Instance Count (fixedRate = 60s)
+1. Completed Process Instance Count (fixedRate = 1h)
+1. Active Process Definition Count (fixedRate = 60s)
+1. Deployment Count (fixedRate = 60s)
+1. Active External Task Count (fixedRate = 60s)
+1. Active Locked External Task Count (fixedRate = 60s)
+1. Active Not Locked External Task Count (fixedRate = 60s)
 1. [Open a request](https://github.com/StephenOTT/Camunda-Monitoring/issues/new) if you want a specific metric created
 
 
@@ -111,12 +130,16 @@ Add the following to your Spring Boot Config (such as `application.yml`) .
 
 ```yml
 # Configure your DB connection:
-#spring:
-#  datasource:
-#    url: jdbc:h2:./build/DB/dbdevDb1;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=TRUE # jdbc:h2:~/devDb1;MODE=PostgreSQL;AUTO_SERVER=TRUE
-#    username: sa
-#    password: ''
-
+spring:
+  #  datasource:
+  #    url: jdbc:h2:./build/DB/dbdevDb1;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=TRUE # jdbc:h2:~/devDb1;MODE=PostgreSQL;AUTO_SERVER=TRUE
+  #    username: sa
+  #    password: ''
+  task:
+    scheduling:
+      pool:
+        size: 3
+        
 management:
   endpoints:
     web:
