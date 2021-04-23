@@ -20,6 +20,13 @@ and your queries/metrics you want to monitor.
 This plugin is designed to be used in Camunda run as a drop-in plugin, or as a custom dependency added to your 
 Camunda Spring Boot project.
 
+
+![dash1](./docs/dashboard1.png)
+
+
+![dash2](./docs/dashboard2.png)
+
+
 ![arch](./docs/Camunda-Monitoring-Arch.png)
 
 # Camunda-Run Quick Start with Prometheus
@@ -72,6 +79,13 @@ Part of `CamundaMonitoringMetrics.groovy`
 1. Active Locked External Task Count (fixedRate = 60s)
 1. Active Not Locked External Task Count (fixedRate = 60s)
 1. [Open a request](https://github.com/StephenOTT/Camunda-Monitoring/issues/new) if you want a specific metric created
+
+# Dashboards
+
+See the [dashboards](./dashboards) folder for common pre-built dashboards (such as grafana + prometheus)
+
+![grafana](./docs/dashboard3.png)
+
 
 
 # Advanced Configuration
