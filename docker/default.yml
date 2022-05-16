@@ -28,5 +28,8 @@ camunda:
   bpm:
     #    metrics:
     #      monitoringBeansXml: file:/camunda/configuration/camunda-monitoring-beans.xml
+    run:
+      process-engine-plugins:
+        - plugin-class: org.camunda.bpm.run.plugin.monitoring.CamundaMonitoringProcessEnginePlugin
     job-execution:
       enabled: false

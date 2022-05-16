@@ -23,13 +23,10 @@ dependencies {
     implementation("org.codehaus.groovy:groovy-all:3.0.7")
 
     compileOnly("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter")
-    compileOnly("org.springframework.boot:spring-boot-starter-web")
+    compileOnly("org.springframework.boot:spring-boot-starter-web:2.6.6")
 
     implementation("org.codehaus.groovy:groovy-all:3.0.7")
-    implementation("org.springframework.boot:spring-boot-starter-actuator:latest.release")
-    implementation("io.micrometer:micrometer-registry-prometheus:latest.release")
-
-    implementation("org.springframework.boot:spring-boot-starter-actuator:latest.release")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:2.6.6")
     implementation("io.micrometer:micrometer-registry-prometheus:latest.release")
 
 }
