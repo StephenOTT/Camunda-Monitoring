@@ -256,3 +256,8 @@ camunda_completed_process_instances{engineName="default",} 0.0
 # TYPE camunda_active_incidents gauge
 camunda_active_incidents{engineName="default",} 0.0
 ```
+
+
+# Build from sources
+
+run ```./gradlew shadowJar```
